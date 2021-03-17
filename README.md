@@ -53,6 +53,12 @@
 4. OSI 7 layer 계층별 역할 // 데이터가 통신되는 과정
 5. rest api
 
+<details>
+  <summary>todo</summary>
+  <div markdown="1">
+- [ ] DNS
+  </div>
+</details>
 
 ---
 ## DAY3
