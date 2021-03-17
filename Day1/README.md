@@ -1,13 +1,14 @@
 <details>
   <summary>목차</summary>
   <div markdown="1">
-
+  
 - [DAY1 역사](#day1-역사)
   - [0. static stie!로 시작](#0-static-stie로-시작)
-    - [정적웹?](#정적웹)
+    - [정적웹 (Static Site)?](#정적웹-static-site)
     - [정적웹에 접속하면 일어나는 일](#정적웹에-접속하면-일어나는-일)
     - [정적웹에는 어떤게 있을까](#정적웹에는-어떤게-있을까)
     - [정적웹이 아닌 것들](#정적웹이-아닌-것들)
+    - [static site로 시작한 이유](#static-site로-시작한-이유)
   - [1. ajax 등장 배경](#1-ajax-등장-배경)
     - [ajax (Asynchronous Javascript And XML)?](#ajax-asynchronous-javascript-and-xml)
     - [ajax 등장 이전](#ajax-등장-이전)
@@ -18,6 +19,7 @@
     - [webpack?](#webpack)
     - [웹팩 등장 이전](#웹팩-등장-이전)
     - [웹팩 등장 이후](#웹팩-등장-이후)
+    - [웹팩 문제점](#웹팩-문제점)
   - [3. SPA 등장배경](#3-spa-등장배경)
     - [SPA (Single Page Application)?](#spa-single-page-application)
     - [SPA가 사용하는 방식](#spa가-사용하는-방식)
@@ -40,13 +42,13 @@
     - [SSG 단점](#ssg-단점)
   - [부록.](#부록)
     - [동적웹 (Sematic Engine Optimization)?](#동적웹-sematic-engine-optimization)
-    - [SEO (Search Engine Optimization)?](#seo-search-engine-optimization)
     - [마크업언어?](#마크업언어)
     - [마크업](#마크업)
-    - [CDN](#cdn)
-    - [CDN 작동원리](#cdn-작동원리)
+      - [mark를 up한다](#mark를-up한다)
+    - [SEO (Search Engine Optimization)?](#seo-search-engine-optimization)
+    - [CDN (Content Delivery Network)?](#cdn-content-delivery-network)
+      - [CDN 작동원리](#cdn-작동원리)
   - [JAMstack](#jamstack)
-  - [- **M**arkup](#--markup)
   </div>
 </details>
 
@@ -55,9 +57,9 @@
 # DAY1 역사
 
 ## 0. static stie!로 시작
-### 정적웹?
+### 정적웹 (Static Site)?
 - 코드가 바뀌지않는 언제 접속해도 계속 같은 리소스와 코드를 건네주는 웹사이트
-  - 서버에 사전에 저장되어있던 HTML을 그대로 반환
+  - 서버에 사전에 저장되어있던 HTML을 그대호 반환
 - 초기에는 HTML 코드만 클라이언트에게 전송해주었었음
 - HTML, CSS, Javascript 코드들, 이미지, 동영상 등의 파일들이 변하지 않음
 
@@ -75,21 +77,18 @@
   - 글을 하나 썼는데 그때마다 내가 방금 올라온 댓글을 보여주려면 HTML코딩을 다시 해야함.
   - 이럴때는 그냥 편하게 글이 올라오면 자동으로 보여주도록 만드는 동적웹이 유리함
 
-### Feed
-- static site로 시작한 근본적인 이유
-  - http의 특성
-    - http: hyphertext transfer protocol << 해석해보고 그 의미를 이해할 것
-    - stateless : 비상태기반 이기 때문에, 정적으로 state가 없는 static site로 시작
-    - connectionless 위와 마찬가지
+### static site로 시작한 이유
+- stateless : 비상태기반 이기 때문에, 정적으로 state가 없는 static site로 시작
+- connectionless
+- TBD
+
 
 ---
 ## 1. ajax 등장 배경
 ### ajax (Asynchronous Javascript And XML)?
 - 비동기 자바스크립트 와 XML.
-- JavaScript와 XML을 이용한 비동기적 정보 교환 기법
-- 서버와 통신하기 위해 XMLHttpRequest 객체를 사용하는 것
-  - feed: 잘 캐치해냄, XMLHttpRequest까지 찾아보는 사람 잘 없는데
-  - XML은 무엇인가도 공부해볼 것
+- JavaScript와 [XML]()을 이용한 비동기적 정보 교환 기법
+- 서버와 통신하기 위해 [XMLHttpRequest]() 객체를 사용하는 것
 
 ### ajax 등장 이전
 - ajax 등장이전까지는 페이지에 새로운 데이터를 반영하려면 서버에서 다시 데이터를 불러와야 했음 (=새로고침)
@@ -99,8 +98,8 @@
 - 이러한 불편함을 해소하기 위해 AJAX를 고안
 
 ### ajax 등장 이후
-- 페이지 새로고침 없이
-  - 서버에 요청가능 // **feed: 새로운 데이터를 서버에 요청 가능 << 페이지 이동 없이 페이지 변경이 가능해짐**
+- 페이지 이동(새로고침) 없이 페이지 변경이 가능
+  - 새로운 데이터를 서버에 요청 가능
   - 서버에서 데이터를 받아 작업 수행가능
   - 필요한 데이터만을 웹서버에 요청해서 받은 후 클라이언트에서 데이터에 대한 처리
 
@@ -121,24 +120,30 @@
   -HTML, CSS, Javscript, Images 등을 모두 각각의 모듈로 보고 이를 조합해 하나의 결과물로 만듬
 
 ### 웹팩 등장 이전
-- 자바스크립트 파일별로 겹치는 변수명이 있으면 오류 // **feed : 이건 es6 이전에서 발생하던 문제일텐데, let의 등장으로 해결됬다보는게 좋지 않을까 싶음, 웹팩으로 번들링하더라도, 번들링하기전의 원본 js에서 block scope 잘못 설정하면 같은 문제가 발생함**
-  - main.js 와 app.js 두 파일에 a라는 변수가 있으면 나중에 로딩된 자바스크립트 파일로 덮어 쓰여짐
-  - 덮여씌여지면 의도한 데이터를 얻을 수 없음
 - HTML, CSS, JS 편집후 반영된 결과를 보려면 매번 브라우저 새로고침을 통해 확인
-- 사용자가 서버로 많은 파일을 요청할 경우 많은 로딩시간이 소요됨 // **feed 이게핵심임**
+- **사용자가 서버로 많은 파일을 요청할 경우 많은 로딩시간이 소요**
   - 다수의 자바스크립트 파일이나 이미지를 요청할 때
   - 용량이 큰 파일을 로딩하려 할 때
 - 느리게 로딩되는 파일만 나중에 로딩되게 할 수 없음
   - 특정 파일의 로딩시간이 길어도 이 파일이 로딩되길 기다려야 하는 현상 발생
 
 ### 웹팩 등장 이후
+- 변수 유효 범위의 문제점을 ES6의 Modules 문법과 웹팩의 모듈 번들링으로 해결
 - 브라우저별로 요청을 제한 
   - 성능/속도 개선 
     - 다수의 파일을 요청하는 것을 막아 갑자기 느려지는 현상을 방지
   - 웹팩을 이용해 파일을 합쳐 놓으면 제약을 피할 수 있음
   - 웹팩을 이용해 모듈을 불러올 타이밍을 정함
     - 특정 모듈을 불러오는데 시간이 오래 걸리는 경우 이를 맨나중에 로딩할 수 있게 지정가능
-    - // **feed webpack의 문제점 : 번들링한 파일의 파일크기가 엄청 클경우에 대한 대비책은? hint: spliting**
+  - 초기 페이지 로딩 속도를 높이기 위해 **나중에 필요한 자원들은 나중에 요청**하는 레이지 로딩(Lazy Loading)
+
+### 웹팩 문제점
+- 번들링한 파일의 파일크기가 엄청 클경우
+  - code spliting
+    1. bundle 내부 확인
+    2. 크기를 많이 차지하는 모듈 확인
+    3. 실수로 번들에 추가된 모듈 발견
+    4. **dynamic import 를 통해 해소**
 
 
 ---
@@ -167,10 +172,11 @@
 ### CSR 장점
 - 필요한 부분만 다시 읽어들임
   - 전체 페이지를 다시 읽어들이는 [SSR](#ssr-server-side-rendering)보다 빠른 화면구성 속도
-  - 화면 이동이 빠름 // **feed ux적인 측면으로, 페이지 이동간의 화면깜빡임이 없음**
+  - 화면 이동이 빠름 (UX적 측면)
+    - ex) 페이지 이동할 때 화면깜빡임이 없음 
 - 네이티브 앱과 유사한 사용자 경험을 제공
   - 유저 입장에서 편리한 사용성
-- // **feed 해보면 알겠지만, 컴포넌트 단위로 개발이 가능해져 유지보수에 매우 용이함**
+  - 컴포넌트 단위로 개발이 가능해져 유지보수에 매우 용이
   
 ### CSR 단점
 - 초기 구동/로딩 속도가 느림
@@ -178,7 +184,6 @@
   - 하지만 처음 로딩 이후에는 [SSR](#ssr-server-side-rendering)보다 빠른 속도를 보여줌
 - [검색엔진최적화(SEO)](#seo-search-engine-optimization)가 되지 않음
   - 처음 로딩하는게 HTML만 있는 페이지 = 구성요소들이 아직 불완전 하기 떄문에 검색이 안됨
-  - // **feed SEO란 무엇인가? meta tag에대한 공부도 해야함**
 - 구현하는데에 드는 시간이 SSR보다 더 들 수 있음
 
 ---
@@ -251,7 +256,10 @@
 
 ### SSG 단점
 - 정적사이트 특성상 새 업데이트 사항이 생기면 다시 빌드해주어야 반영됨
-// **feed 이건 조금 다르긴한데, SSG에서 ajax call을 한다고 가정해보자, 그럼 api서버가 있어야할테지만, SEO는 무너짐. BUT meta tag에 대한 정보가 갱신이 가능 => SEO를 일부 커버가 가능. SEO가 기본적으로 구글봇같은 크롤링해주는 녀석들이 데이터를 수집하게 되는데 meta tag가 상당히 중용한 요소를 차지함. 그럼 위와 같은 페이지는 SSG인가 SSR인가.. 애매해짐, 현재는 정해진 용어가 없는듯 하긴한데 나중에~~~Next.js나 Nuxt.js를 사용해본다면 알 수 있을듯ㅋ**
+- ex) Next.js, Nuxt.js 
+- SSG에서 ajax call을 한다면?
+  - SEO가 무너질 수 있음
+    - 이점은 meta tag 정보가 갱신 가능 = SEO 일부 커버 가능
 
 ---
 
@@ -260,10 +268,6 @@
 - 동적웹은 서버에서 요청정보를 처리한 후에 제작된 HTML를 반환 
   - 상황, 시간, 요청에 따라 달라짐
   - ex) 네이버/티스토리 블로그, 게시판기능이 있는 홈페이지 등
-  
-### SEO (Search Engine Optimization)?
-- 검색엔진최적화
-  - 웹 페이지 검색엔진이 자료를 수집하고 순위를 매기는 방식에 맞게 웹 페이지를 구성해서 검색 결과의 상위에 나올 수 있도록 하는 작업
 
 ### 마크업언어? 
 - 태그 등을 이용하여 문서나 데이터의 구조를 명기하는 언어 (HTML, XML, SVG등이 해당)
@@ -274,17 +278,21 @@
   > 검색엔진최적화!
 - 문서를 구조적으로 표시하기 위한 것이 핵심 개념
   > 유지보수/협업 하기 편리하게 마크업 하는 것이 좋음 (한눈에 태그를 보고도 간단 명료하게 파악할 수 있는 문서)
+#### mark를 up한다
+- html처럼 각 tag들의 attribute들이 추가
+  - mark(tag, attribute)
+  - up(추가)
 
-// **feed 마크업은 기본적으로 mark를 up한다고 생각하면됨, html처럼 각 tag들의 attribute들이 추가되는데, mark(tag, attribute) up(추가)에 대응해서 생각하면됨**
+### [SEO (Search Engine Optimization)?](/Day1/_seo/README.md)
+- 검색엔진최적화
+  - 웹 페이지 검색엔진이 자료를 수집하고 순위를 매기는 방식에 맞게 웹 페이지를 구성해서 검색 결과의 상위에 나올 수 있도록 하는 작업
 
-### CDN
-- Content Delivery Network
+### [CDN (Content Delivery Network)?](/Day1/_cdn/README.md)
+- 
 - 멀리 있는 사용자에게 컨텐츠를 더 빠르게 제공할 수 있게 해줌
 - 느린 응답속도 개선
 - 병목 현상 / 서버다운을 예방
-- // **feed CDN에 대한 이해가 있으려면, 캐시와 프록시서버에대한 이해가 필요함 어차피 3-1학기 때 배우긴할테지만 미리 공부해두면 좋음**
-
-### CDN 작동원리
+#### CDN 작동원리
 1. 최초 요청에 결과를 사용자에게 반환하면서 동시에 CDN 캐싱장비에 저장
 2. 이후 모든 요청을 CDN 업체에서 지정하는 만료시점까지 CDN 캐싱장비에서 전송
 
@@ -292,5 +300,6 @@
 - **J**avascript
 - **A**PI
 - **M**arkup
+
 ---
 <small>[목차로 돌아가기](/README.md)</small>
