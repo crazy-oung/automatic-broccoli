@@ -31,10 +31,12 @@
 <details>
   <summary>todo</summary>
   <div markdown="1">
+
 - [ ] static site
 - [x] [http특성](#network)
 - [ ] XMLHttpRequest?
 - [ ] XML?
+- [ ] JSON?
 - [ ] webpack 튜토리얼
   - [ ] NEXTjs
   - [ ] NUXTjs
@@ -56,7 +58,16 @@
 <details>
   <summary>todo</summary>
   <div markdown="1">
+
+- [ ] [이해 해야되는거](https://d2.naver.com/helloworld/59361)
 - [ ] DNS
+- [x] SSL
+- [x] Load Balance
+- [x] 프록시서버
+- [x] 캐싱
+- [x] L4 Switch
+- [x] UDP / TCP
+  - [ ] 전송 알고리즘
   </div>
 </details>
 
