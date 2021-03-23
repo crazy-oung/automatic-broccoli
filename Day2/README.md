@@ -12,8 +12,8 @@
     - [Render-Tree?](#render-tree)
     - [렌더링 트리 만드는 과정](#렌더링-트리-만드는-과정)
     - [DOM 트리가 복잡하면...](#dom-트리가-복잡하면)
+    - [Layout (reflow)](#layout-reflow)
     - [Paint?](#paint)
-    - [페인트 과정](#페인트-과정)
     - [브라우저가 보여주는 과정](#브라우저가-보여주는-과정)
   - [2. http 통신이란 무엇인가?](#2-http-통신이란-무엇인가)
     - [HTTP (Hypertext Transfer Protocol)?](#http-hypertext-transfer-protocol)
@@ -100,7 +100,7 @@
 >   - **Response**?  Request에서 받은 요청을 처리하고 그에 해당하는 데이터를 담은 객체
 > - Request(요청)후 Response(응답)을 받음
 - 브라우저는 마지막에 받은 정보를 가지고 웹페이지를 [그림(페인트)](#paint)
-  - HTML은 [DOM](#domdocument-object-model)로 변환되며 CSS는 [CSSOM](#cssom-css-object-model)으로 변환
+  - HTML은 [DOM](#dom-document-object-model)로 변환되며 CSS는 [CSSOM](#cssom-css-object-model)으로 변환
   - [Render-Tree](#render-tree), [Paint](#paint) 발생
     > 바이트 > 문자 > 토큰 > 노드 > 객채 모델 순으로 해석
 
@@ -148,13 +148,21 @@
   - 단점
     - DOM트리가 굉장히 복잡
     - 검색 비용이 증가 (검색 비용 줄일 수 없음, 트리 탐색 알고리즘 한계)
+      - 화면에 수정된 요소가있을때 성능이 떨어짐
+        - 렌더 트리를 재구축하고
+        - 재생성된 렌더트리를 바탕으로 렌더링을 진행
+        - 리페인트(브라우저가 변경된 스타일을 다시 입히는 과정) 진행
+        - 리플로우(HTML내 크기나 위치가 변경된 요소를 재배치하는 과정) 진행
   - So, 렌더링 비용을 줄이려면
-    - DOM select하는 케이스를 줄이는게 최선 = 뎁스를 줄이자...?
-  
+    - DOM select하는 케이스를 줄이는게 최선 = [가상 DOM](/Day3/README.md#가상-dom)으로 해소가능
+
+### Layout (reflow)
+- 각 노드들에 스크린의 좌표를 설정해 나타나야 할 위치설정
+
 ### Paint?
-?
-### 페인트 과정
-?
+- 렌더링 된 요소들에 색을 입히는 과정
+- 돔 트리의 각 노드들을 거쳐가면서 paint() 메소드를 호출해요. 
+
 
 
 ### 브라우저가 보여주는 과정
@@ -162,7 +170,8 @@
 2. CSS 마크업을 처리하고 CSSOM 트리를 빌드
 3. DOM 및 CSSOM을 결합하여 렌더링 트리를 형성
 4. 렌더링 트리에서 레이아웃을 실행하여 각 노드의 기하학적 형태를 계산
-5. 개별 노드를 화면에 페인트
+5. 레이아웃 처리
+6. 개별 노드를 화면에 페인트
 
 
 ---
@@ -503,6 +512,8 @@
 - Representations(표현)
 
 ### REST 특징 6가지
+>  HTTP의 장점을 최대한 쓰기 위해 고안한 만큼 HTTP의 특징을 가져가는 것이 장점이자 특징  
+> - 아래의 특징은 HTTP의 특징에 해당되기도 함
 1. 통합된(일관적인) 인터페이스 (Uniform Interface)
      - 표준화된 형식으로 정보를 전송할 수 있도록 구성 요소 간 통일되고 한정적인 인터페이스로 수행
 2. 무상태성(stateless)
@@ -543,7 +554,7 @@
 - URI는 정보의 `자원`을 표현
   - ex) **GET** /`members`/`1`
 - 자원에 대한 행위(Verb)는 **HTTP Method를 사용해 표현**
-  - ex) **UPDATE** /members/1
+  - ex) **PUT** /members/1
     - 유저 정보를 가져올 때) **GET**  `/user/1`
     - 유저 저보를 추가할 때) **POST** `/user/1`
 

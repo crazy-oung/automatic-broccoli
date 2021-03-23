@@ -80,6 +80,13 @@
 3. bundling 그리고 webpack의 역할
 4. webpack-dev-server
 
+<details>
+  <summary>todo</summary>
+  <div markdown="1">
+
+- [ ] 자바스크립트의 비동기통신
+  </div>
+</details>
 
 ---
 ## DAY4
