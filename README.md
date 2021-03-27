@@ -11,6 +11,7 @@
     - [js](#js)
   - [DAY4](#day4)
     - [web-security](#web-security)
+  - [작성예정](#작성예정)
   </div>
 </details>
 
@@ -42,7 +43,7 @@
   - [ ] NUXTjs
 - [ ] CDN
 - [ ] SEO
-- [ ] es6?es5?
+- [x] [es6?es5?](#js)
   </div>
 </details>
 
@@ -61,6 +62,7 @@
 
 - [ ] [이해 해야되는거](https://d2.naver.com/helloworld/59361)
 - [ ] DNS
+- [ ] HTTP 버전
 - [x] SSL
 - [x] Load Balance
 - [x] 프록시서버
@@ -85,6 +87,7 @@
   <div markdown="1">
 
 - [ ] 자바스크립트의 비동기통신
+- [ ] ES6
   </div>
 </details>
 
@@ -98,5 +101,7 @@
 
 ---
 
+## 작성예정
+- [ ] 백엔드기본
 
 

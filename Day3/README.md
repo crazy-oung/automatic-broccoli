@@ -23,8 +23,9 @@
     - [자바스크립트의 Prototype](#자바스크립트의-prototype)
       - [자바스크립트의 프로토타입 오브젝트](#자바스크립트의-프로토타입-오브젝트)
       - [프로토타입 체이닝 (Prototype Chainig) - Prototype Link](#프로토타입-체이닝-prototype-chainig---prototype-link)
+      - [console.log와 window.open](#consolelog와-windowopen)
   - [2. DOM과 가상DOM](#2-dom과-가상dom)
-    - [DOM](#dom)
+    - [DOM (Document Object Model)](#dom-document-object-model)
     - [DOM에서 중요한 데이터 타입들](#dom에서-중요한-데이터-타입들)
     - [가상 DOM (Virtual DOM)?](#가상-dom-virtual-dom)
   - [3. web storage에 대한 이해 cookie, session storage, local storage](#3-web-storage에-대한-이해-cookie-session-storage-local-storage)
@@ -45,6 +46,7 @@
     - [Node.js와 NPM](#nodejs와-npm)
     - [package.json](#packagejson)
     - [package.json 주요 구성](#packagejson-주요-구성)
+    - [uglify](#uglify)
   - [5. webpack-dev-server](#5-webpack-dev-server)
     - [Webpac-Dev-Server ??](#webpac-dev-server-)
     - [Webpac-Dev-Server 동작 원리](#webpac-dev-server-동작-원리)
@@ -181,7 +183,7 @@
 - [ECMAScript](/Day3/_es/README.md) 사양을 따른다.
   - ECMAScript가 나온 배경에는 자바스크립트가 있음 
   - [ES6에 대해 이해하자.](/Day3/_es/README.md)
-
+  
 ### 자바스크립트의 Prototype
 - 부모 요소를 만들어서 객체를 그 하위에 상속시키는 개념을 구현
   - 진짜로 상속이 존재한다는 게 아니라 **`프로토타입으로 상속을 구현했다.`** 라고 봐야함
@@ -218,22 +220,24 @@
 - 이모든 과정, `__proto__` 를 통해 상위 프로토타입들과의 체인처럼 연결되어 있어서 이를 Prototype Chaining 이라 부름
 - 프로토타입이 생성되면 프로토타입 오브젝트와 프로토타입 링크가 함께 가는 것
 
+#### console.log와 window.open
 
 ---
 ## 2. DOM과 가상DOM
 > ![DOM 프로세스](/Day3/dom_process.png)
 > DOM트리와 웹페이지를 보는 과정 [바로가기](/Day2/README.md#dom-document-object-model)
-### DOM
+### DOM (Document Object Model)
 - 문서 객체 모델(Document Object Model) HTML, XML 문서의 프로그래밍 interface
-- 문서의 구조화된 표현을 제공
+- - W3C 표준으로 문서의 구조화된 표현을 제공
 - 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공, 문서 구조, 스타일, 내용등을 변경가능하게 해줌 
 - 구조화된 노드와 속성,메소드 를 갖고 있는 객체를 문서를 표현
   - 웹 페이지를 스크립트 또는 프로그래밍 언어들에서 사용될 수 있게 연결시켜주는 역할을 담당
 - 웹은 일종의 문서임, 문서는 브라우저에서 해석되어서 나타나며 이를 저장/조작하는 방법을 제공하는게 DOM인 셈
   - 이같은 조작에는 자바스크립트와 같은 스크립트 언어를 사용
+-  정적 문서의 요소들을 객체로 구성, 브라우저에서 실행되는 스크립트가 HTML, XML 등의 정적 문서의 요소에 동적으로 접근하고 업데이트할 수 있도록 하는 언어 중립적인 API
 
 ### DOM에서 중요한 데이터 타입들
-- `document`
+- **`document`**
   - DOM의 루트
   - DOM 트리에 진입할 때 document에서부터 접근하게됨
 - `element`
@@ -243,6 +247,8 @@
   - `document.getElementsByTagName() `
 - `attribute`
 - `nameNodeMap`
+- **`navigator`**
+- **`window`**
 
 ### 가상 DOM (Virtual DOM)?
 - 기존의 DOM에서 탐색시간이 오래걸린다는 단점을 보완하기 위해 나온 개념 
@@ -264,6 +270,9 @@
 
 ---
 ## 3. web storage에 대한 이해 cookie, session storage, local storage
+> - 각 스토리지들의 자원 저장 위치
+> - 데이터를 어떤 웹 스토리지에 저장할 것인지의 기준
+
 ### 웹 스토리지 (Web Storage)?
 - 서버가 아닌, 클라이언트에 데이터를 저장할 수 있도록 지원하는 HTML5의 기능
 - 5MB 까지 저장공간 이용가능 (큰 용량)
@@ -330,7 +339,6 @@
   - 페이지 로딩 속도 개선됨
 
 
-
 ---
 ## 4. bundling 그리고 webpack의 역할
 ### 웹팩
@@ -338,11 +346,12 @@
 - 코드를 압축 또는 최적화
 - SCSS 같은 소스코드를 CSS로 전처리
 - HMR(Hot Module Replacement) 사용가능
-
+  
 ### 모듈 번들러
 - 웹 애플리케이션을 구성하는 자원(HTML, CSS, Javscript, Images 등)을 모두 각각의 모듈로 보고 이를 하나로 조합하여 병합된 하나의 결과물로 만듬
 
 ### Webpack 해주는 역할
+> 프로젝트 개발환경 세팅개념 (config를 잘 세팅하는 게 중요)
 - HTML, CSS, JS 압축
   - 배포되는 파일의 크기를 감소 = 페이지 로딩 감소
   - 자바스크립트를 모듈로 작성 = 각각의 파일에 대해서 script 태그 별도로 불필요 
@@ -372,6 +381,9 @@
 - scripts 
 - dependencies (배포 라이브러리)
 - devDependencies (개발 라이브러리)
+
+
+### uglify
 
 
 ---

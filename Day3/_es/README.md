@@ -9,6 +9,7 @@
     - [ECMAScript 6?](#ecmascript-6)
     - [es6 이전에 발생하던 문제](#es6-이전에-발생하던-문제)
     - [ES6 특징](#es6-특징)
+    - [ES6의 primitive data type](#es6의-primitive-data-type)
   </div>
 </details>
 
@@ -51,3 +52,4 @@
   - Template Literals
   - 매개변수 기본값 
 
+### ES6의 primitive data type
